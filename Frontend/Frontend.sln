@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DobbelSpel", "DobbelSpel\Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JumpForwardFlow", "JumpForwardFlow\JumpForwardFlow.csproj", "{3F5C0695-2917-4A75-9DE2-140139734AE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JumpBackFlow", "JumpBackFlow\JumpBackFlow.csproj", "{70F6F210-F1A8-4284-922E-03E6D6102036}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{3F5C0695-2917-4A75-9DE2-140139734AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F5C0695-2917-4A75-9DE2-140139734AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F5C0695-2917-4A75-9DE2-140139734AE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F6F210-F1A8-4284-922E-03E6D6102036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F6F210-F1A8-4284-922E-03E6D6102036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F6F210-F1A8-4284-922E-03E6D6102036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F6F210-F1A8-4284-922E-03E6D6102036}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
