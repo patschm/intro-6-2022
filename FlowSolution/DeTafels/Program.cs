@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            
             //Console.WriteLine("De tafel van 1");
             //Console.WriteLine("1 x 1 = 1");
             //Console.WriteLine("2 x 1 = 2");
@@ -21,7 +22,31 @@
             //    DeTafelVan(tafel);
             //}
 
-            AlleTafelsTot(20);
+            //AlleTafelsTot(20);
+            UserTafel();
+        }
+
+        static void UserTafel()
+        {
+            int keuzeVanGebruiker = WelkeTafel();
+            DeTafelVan(keuzeVanGebruiker);
+        }
+
+        static int WelkeTafel()
+        {
+            do
+            {
+                Console.WriteLine("Welke tafel drukken we af?");
+                string sTafel = Console.ReadLine();
+                int tafel = int.Parse(sTafel);
+                if (tafel >= 10 && tafel <= 50)
+                {
+                    return tafel;
+                    //break;
+                }
+                Console.WriteLine("Ongeldige tafel. Tafel tussen 10 en 50");
+            }
+            while (true);
         }
 
         static void AlleTafelsTot(int aantalTafels)
