@@ -4,7 +4,74 @@
     {
         static void Main(string[] args)
         {
-            SimpeleArray();
+            //SimpeleArray();
+            //DeList();
+           // DeDictionary();
+
+            Stack<int> stack = new Stack<int>();
+            stack.Push(1);
+            stack.Push(2);
+
+            int tmp = stack.Pop();
+            //tmp = stack.Pop();
+
+            Console.WriteLine(stack.Count);
+
+            Queue<string> kassa = new Queue<string>();
+            kassa.Enqueue("Hallo");
+            kassa.Enqueue("World");
+
+            string sItem = kassa.Dequeue();
+            Console.WriteLine(sItem);
+            sItem = kassa.Dequeue();
+            Console.WriteLine(sItem);
+        }
+
+        private static void DeDictionary()
+        {
+            Dictionary<string, int> lookupLijst = new Dictionary<string, int>();
+            lookupLijst.Add("een", 11);
+            lookupLijst.Add("twee", 22);
+
+            int nr = lookupLijst["twee"];
+            Console.WriteLine(nr);
+
+            foreach(var item in lookupLijst)
+            {
+                Console.WriteLine($"{item.Key}: {item.Value}");
+            }
+
+
+        }
+
+        private static void DeList()
+        {
+            // DataType varNaam;
+            // DataType = List<int>
+            // varNaam = mijnlist
+            List<int> mijnlist = new List<int>();
+            mijnlist.Add(1);
+            mijnlist.Add(2);
+            mijnlist.Add(3);
+            mijnlist.Add(4);    
+            mijnlist.Add(5);    
+
+            for(int index = 0; index < mijnlist.Count; index++)
+            {
+                Console.WriteLine(mijnlist[index]);
+            }
+            foreach (var item in mijnlist)
+            {
+                Console.WriteLine(item);
+            }
+
+            List<string> woorden = new List<string>();
+
+            List<decimal> prijzen = new List<decimal>();
+
+            List<DateTime> datums = new List<DateTime>();
+
+            List<KipCaravan> caravans = new List<KipCaravan>();
         }
 
         static void SimpeleArray()
