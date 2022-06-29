@@ -12,6 +12,11 @@
             l1.Uit();
 
             Console.WriteLine(l1.Verbruik);
+
+            TL lamp3 = new TL { kleur = ConsoleColor.Cyan, Intensiteit = 200, StartTijd = 800 };
+            lamp3.Aan();
+
+            lamp3.Uit();
         }
     }
 }

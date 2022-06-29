@@ -29,7 +29,7 @@
             }
         }
 
-        public void Aan()
+        public virtual void Aan()
         {
             Console.BackgroundColor = kleur;
             Console.WriteLine($"De lamp brandt met intensiteit {intensiteit} lumen");
