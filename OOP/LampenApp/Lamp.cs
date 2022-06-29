@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LampenApp
+﻿namespace LampenApp
 {
     internal class Lamp
     {
@@ -25,7 +19,7 @@ namespace LampenApp
         {
             kleur = color;
             Console.BackgroundColor = kleur;
-            Console.WriteLine("Ander kleurtje");
+            Console.WriteLine("Ander kleurtje met intensiteit {intensiteit} lumen");
         }
     }
 }

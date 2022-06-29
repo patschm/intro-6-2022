@@ -9,14 +9,36 @@ namespace ObjectOrientatie
     class Pen
     {
         // Fields. Hierin slaan wij eigenschappen op.
-        public int lijndikte;
-        public ConsoleColor kleur;
+        private int lijndikte;
+        //private ConsoleColor kleur;
+
+        // Properties. Properties gebruik je om
+        // Encapsulation te realiseren (Gecontroleerd toegang tot de private fields)
+        // Je checkt de inkomende waarde voordat je hem toekent aan het field.
+        // Shortcuts: prop of propfull
+        public int Lijndikte
+        {
+            get
+            {
+                return lijndikte;
+            }
+            set
+            {
+                if (value > 0 && value < 100)
+                {
+                    lijndikte = value;
+                }
+            }
+        }
+
+        // Autogenerating Property. Brengt zijn eigen private field mee.
+        public ConsoleColor Kleur { get; set; }
 
         // Method. Hierin definieren wij het gedrag van een object
         public void Schrijf(string text)
         {
-            Console.ForegroundColor = kleur;
-            Console.WriteLine($"{text} met lijndikte {lijndikte}");
+            Console.ForegroundColor = Kleur;
+            Console.WriteLine($"{text} met lijndikte {Lijndikte}");
             Console.ResetColor();
         }
 
@@ -29,13 +51,13 @@ namespace ObjectOrientatie
         // Indien dat het geval is,moet je ook geen default constructor meer opnemen.
         public Pen()
         {
-            lijndikte = 10;
-            kleur = ConsoleColor.Blue;
+            Lijndikte = 10;
+            Kleur = ConsoleColor.Blue;
         }
         public Pen(int lineWidth, ConsoleColor color)
         {
-            lijndikte = lineWidth;
-            kleur = color;
+            Lijndikte = lineWidth;
+            Kleur = color;
         }
     }
 }
