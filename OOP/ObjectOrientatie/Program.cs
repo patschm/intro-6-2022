@@ -20,9 +20,25 @@
             Pen p3 = new Pen { Lijndikte = 2_000_000_000, Kleur = ConsoleColor.Yellow };
             p3.Schrijf("Aha!!");
 
+            // Generaliseren.
+            Pen p4 = new Vulpen { Kleur = ConsoleColor.Red , Lijndikte = 15, SchrijfCount = 15};
+            for (int i = 0; i < 5; i++)
+            {
+                p4.Schrijf("hallo " + i);
+                if (i == 10)
+                {
+                    //p4.SchrijfCount = 100;
+                }
+            }
 
-
+            TestPen(p4);
+            TestPen(p);
             // Big crunch
+        }
+
+        static void TestPen(Pen p)
+        {
+            p.Schrijf("Ik test de pen");
         }
     }
 }

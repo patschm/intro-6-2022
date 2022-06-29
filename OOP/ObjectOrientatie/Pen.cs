@@ -35,7 +35,9 @@ namespace ObjectOrientatie
         public ConsoleColor Kleur { get; set; }
 
         // Method. Hierin definieren wij het gedrag van een object
-        public void Schrijf(string text)
+        // Met virtual geef ik aan dat dit gedrag polymorf-ready.
+        // Polymorfissme is generaliseren met behoud van specifiek gedrag.
+        public virtual void Schrijf(string text)
         {
             Console.ForegroundColor = Kleur;
             Console.WriteLine($"{text} met lijndikte {Lijndikte}");
