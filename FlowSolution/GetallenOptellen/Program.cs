@@ -1,12 +1,23 @@
-﻿namespace GetallenOptellen
+﻿using System.Diagnostics;
+
+namespace GetallenOptellen
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[] nummers = Vraag5Getallen();
-            int uitkomst = TelGetallenOp(nummers);
-            DrukUitkomstAf(uitkomst);
+            try
+            {
+                int[] nummers = Vraag5Getallen();
+                int uitkomst = TelGetallenOp(nummers);
+                DrukUitkomstAf(uitkomst);
+            }
+            catch(Exception e)
+            {
+                Trace.WriteLine(e);
+                Console.WriteLine("Ooops");
+            }
+
         }
 
         static void DrukUitkomstAf(int uitkomst)
@@ -49,9 +60,10 @@
                 try
                 {
                     int nr = int.Parse(sNr);
+                    Console.WriteLine("Gaat goed");
                     return nr;
                 }
-                catch(FormatException fe)
+                catch (FormatException fe)
                 {
                     Console.WriteLine($"{sNr} is geen getal");
                 }
@@ -61,7 +73,11 @@
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Ooops");
+                }
+                finally
+                {
+                    Console.WriteLine("Altijd uitgevoerd");
                 }
             }
             while(true);
