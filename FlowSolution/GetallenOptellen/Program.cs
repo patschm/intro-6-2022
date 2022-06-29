@@ -46,8 +46,23 @@
             {
                 Console.WriteLine($"Geef {orde}e getal");
                 string sNr = Console.ReadLine();
-                int nr = int.Parse(sNr);
-                return nr;
+                try
+                {
+                    int nr = int.Parse(sNr);
+                    return nr;
+                }
+                catch(FormatException fe)
+                {
+                    Console.WriteLine($"{sNr} is geen getal");
+                }
+                catch (OverflowException oe)
+                {
+                    Console.WriteLine($"Het getal moet tussen {int.MinValue} en {int.MaxValue}");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
             while(true);
         }
