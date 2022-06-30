@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ObjectOrientatie
+﻿namespace ObjectOrientatie
 {
     // Vulpen erft van Pen en daarmee krijgt hij de eigenschappen en gedrag
     // van de pen. Erfen doe je met de ':' (inherits, extends)
     // Je kunt maar van 1 classe tegelijk erfen.
-    internal class Vulpen : Pen
+    // sealed betekent dat je van vulpen niet meer kunt erfen.
+    internal sealed class Vulpen : Pen
     {
         private int schrijfCount = 10;
         public int SchrijfCount
@@ -20,8 +15,12 @@ namespace ObjectOrientatie
         
         // Met override activeer ik het polymorfisme.
         // Dit kan alleen als de base methode virtual (of abstract)
+        // Optioneel kan ik hier ook sealed opnemen. Hiermee vernietig ik 
+        // het polymorf-ready (virtual) zijn.
         public override void Schrijf(string text)
         {
+            // Waar this ikzelf ben, is base mijn directe parent.
+           //base.Schrijf(text);
             if (schrijfCount > 0)
             {
                 Console.ForegroundColor = Kleur;
