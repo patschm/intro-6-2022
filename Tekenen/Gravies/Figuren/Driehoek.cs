@@ -21,7 +21,7 @@ namespace TekenProgramma
             double hoekRads = Hoek / 2 * Math.PI;
             int delta = (int)(Hoogte / Math.Tan(hoekRads));
             points[2] = new Point(Positie.X + delta, Positie.Y + Hoogte);
-            g.DrawPolygon(Pens.Black, points);
+           // g.DrawPolygon(Pens.Black, points);
             
         }
     }
