@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DierenLib", "DierenLib\DierenLib.csproj", "{584A6CCB-9E25-49BB-87F0-71F249C36AB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeDierentuin", "DeDierentuin\DeDierentuin.csproj", "{FF916342-B83A-4DBA-AF09-EF884DD76948}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{584A6CCB-9E25-49BB-87F0-71F249C36AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{584A6CCB-9E25-49BB-87F0-71F249C36AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{584A6CCB-9E25-49BB-87F0-71F249C36AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584A6CCB-9E25-49BB-87F0-71F249C36AB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF916342-B83A-4DBA-AF09-EF884DD76948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF916342-B83A-4DBA-AF09-EF884DD76948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF916342-B83A-4DBA-AF09-EF884DD76948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF916342-B83A-4DBA-AF09-EF884DD76948}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A774B6E3-8766-486F-AFA2-32972F2EB111}
+	EndGlobalSection
+EndGlobal
