@@ -17,7 +17,6 @@ namespace DierenLib.Verblijven
             {
                 Console.WriteLine($"Neee! Geen {d.GetType().Name} in een {this.GetType().Name}");
             }
-
         }
         public void Rammel()
         {
@@ -26,6 +25,5 @@ namespace DierenLib.Verblijven
                 d.MaakGeluid();
             }
         }
-
     }
 }
