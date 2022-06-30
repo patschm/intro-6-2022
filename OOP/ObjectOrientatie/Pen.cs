@@ -15,7 +15,7 @@ namespace ObjectOrientatie
     class Pen
     {
         // Fields. Hierin slaan wij eigenschappen op.
-        private int _lijndikte;
+        private int _lijndikte  = 10;
         // private ConsoleColor kleur;
         // protected. Nog altijd private voor de boze buitenwereld, maar public 
         // voor afgeleide classen.

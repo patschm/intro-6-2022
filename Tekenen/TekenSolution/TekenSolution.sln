@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shapes", "Shapes\Shapes.csproj", "{7D687D04-6D74-4625-A7BF-7CAC2EE1377C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekenProgramma", "TekenProgramma\TekenProgramma.csproj", "{FB651130-7823-45F2-85E7-B0640781293E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D687D04-6D74-4625-A7BF-7CAC2EE1377C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D687D04-6D74-4625-A7BF-7CAC2EE1377C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D687D04-6D74-4625-A7BF-7CAC2EE1377C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D687D04-6D74-4625-A7BF-7CAC2EE1377C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB651130-7823-45F2-85E7-B0640781293E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB651130-7823-45F2-85E7-B0640781293E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB651130-7823-45F2-85E7-B0640781293E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB651130-7823-45F2-85E7-B0640781293E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {774D28F6-BCB2-41A9-9446-597A76CEC3A7}
+	EndGlobalSection
+EndGlobal
