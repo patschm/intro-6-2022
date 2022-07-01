@@ -8,6 +8,7 @@ namespace GanzenbordLib
         private Vak[] vakken = new Vak[64];
         internal Dobbelsteen[] stenen = new Dobbelsteen[2];
         private Pion ActievePion;
+        public bool IsBeeindigd { get; set; }
 
         private void Initialize()
         {
@@ -47,11 +48,13 @@ namespace GanzenbordLib
         }
         public void Beurt()
         {
-            Console.WriteLine($"{ActievePion.Naam} staat op positie {ActievePion.HuidigVak.Positie} is aan de beurt.");
+            Console.WriteLine($"{ActievePion.Naam} is aan de beurt.");
             int nr = WerpStenen();
             Console.WriteLine($"{ActievePion.Naam} gooit een {stenen[0].Worp} en {stenen[1].Worp}");
             Vak newPos = FindVak(ActievePion.HuidigVak.Positie + nr);
             ActievePion.Verplaats(newPos);
+            IsBeeindigd = ActievePion.IsWinnaar;
+            if (IsBeeindigd) return;
             NextPlayer();
         }
         private void NextPlayer()
