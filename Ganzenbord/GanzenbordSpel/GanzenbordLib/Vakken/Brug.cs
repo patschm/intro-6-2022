@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GanzenbordLib.Vakken
+﻿namespace GanzenbordLib.Vakken
 {
+    /// <summary>
+    /// Brug.
+    /// Ga verder naar 12.
+    /// <see href="https://nl.wikipedia.org/wiki/Ganzenbord"/>
+    /// </summary>
     public class Brug: Vak
     {
         public override void Actie(Pion p)

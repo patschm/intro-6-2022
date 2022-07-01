@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GanzenbordLib.Vakken
+﻿namespace GanzenbordLib.Vakken
 {
+    /// <summary>
+    /// Start.
+    /// Het startpunt van het spel.
+    /// </summary>
     public class Start : Vak
     {
         public override void Actie(Pion p)
         {
-            Console.WriteLine($"{p.Naam} is aangemeld op start");
+            Console.WriteLine($"{p.Naam} is aangemeld op Start (0)");
         }
     }
 }

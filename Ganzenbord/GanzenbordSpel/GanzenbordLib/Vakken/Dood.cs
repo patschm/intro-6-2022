@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GanzenbordLib.Vakken
+﻿namespace GanzenbordLib.Vakken
 {
+    /// <summary>
+    /// Dood.
+    /// Terug  naar begin, opnieuw beginnen.
+    /// <see href="https://nl.wikipedia.org/wiki/Ganzenbord"/>
+    /// </summary>
     public class Dood: Vak
     {
         public override void Actie(Pion p)

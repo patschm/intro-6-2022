@@ -6,17 +6,13 @@ namespace GanzenbordLib
     {
         private List<Pion> pionnen = new List<Pion>();
         private Vak[] vakken = new Vak[64];
-        internal Dobbelsteen[] stenen = new Dobbelsteen[2];
         private Pion ActievePion;
         public bool IsBeeindigd { get; set; }
+        public Dobbelsteen Steen1 = new Dobbelsteen();
+        public Dobbelsteen Steen2 = new Dobbelsteen();
 
         private void Initialize()
         {
-            // Initialiseer de dobbelstenen
-            for(int i = 0; i < stenen.Length; i++)
-            {
-                stenen[i] = new Dobbelsteen();
-            }
             // Initialiseer de vakken
             for(int i = 0; i < vakken.Length; i++)
             {
@@ -39,7 +35,7 @@ namespace GanzenbordLib
             vakken[59] = new Turbo { Bord = this, Positie = 59 };
             vakken[6] = new Brug { Bord = this, Positie = 6 };
             vakken[19] = new Herberg { Bord = this, Positie = 19 };
-            vakken[26] = new Opnieuw { Bord = this, Positie = 26 };
+            vakken[26] = new Dobbelen { Bord = this, Positie = 26 };
             vakken[31] = new Put { Bord = this, Positie = 31 };
             vakken[42] = new DoornStruik { Bord = this, Positie = 42 };
             vakken[52] = new Gevangenis { Bord = this, Positie = 52 };
@@ -48,10 +44,16 @@ namespace GanzenbordLib
         }
         public void Beurt()
         {
+            if (ActievePion.BeurtOverslaan)
+            {
+                ActievePion.Verplaats(ActievePion.HuidigVak);
+                NextPlayer();
+                return;
+            }
             Console.WriteLine($"{ActievePion.Naam} is aan de beurt.");
             int nr = WerpStenen();
-            Console.WriteLine($"{ActievePion.Naam} gooit een {stenen[0].Worp} en {stenen[1].Worp}");
-            Vak newPos = FindVak(ActievePion.HuidigVak.Positie + nr);
+            Console.WriteLine($"{ActievePion.Naam} gooit een {Steen1.Worp} en {Steen2.Worp}");
+            Vak newPos = FindVak(ActievePion.Positie + nr);
             ActievePion.Verplaats(newPos);
             IsBeeindigd = ActievePion.IsWinnaar;
             if (IsBeeindigd) return;
@@ -71,6 +73,7 @@ namespace GanzenbordLib
             }
             if (currenPionIndex + 1 >= pionnen.Count)
             {
+                // Laatste pion, begin weer van voorafaan
                 ActievePion = pionnen[0];
             }
             else
@@ -80,17 +83,13 @@ namespace GanzenbordLib
         }
         public int WerpStenen()
         {
-            int nr = 0;
-            foreach (var steen in stenen)
-            {
-                steen.Gooi();
-                nr = nr + steen.Worp;
-            }
-            return nr;
+            Steen1.Gooi();
+            Steen2.Gooi();
+            return Steen1.Worp + Steen2.Worp;
         }
         public void Start()
         {
-            ActievePion = pionnen.FirstOrDefault();  
+            ActievePion = pionnen.First();  
         }
         public void Registreer(string spelerNaam)
         {
@@ -109,8 +108,8 @@ namespace GanzenbordLib
             // Teveel gegooid. We moeten het teveel gegooide aantal vakken terug
             if (position >= vakken.Length)
             {
-                int vakkenTeveel = position - 63;
-                position = 63 - vakkenTeveel;
+                int vakkenTeveel = position - (vakken.Length - 1); // er zijn 64 vakken. Corrigeer naar 63
+                position = (vakken.Length - 1) - vakkenTeveel;
                 return vakken[position];
             }
             return null;           

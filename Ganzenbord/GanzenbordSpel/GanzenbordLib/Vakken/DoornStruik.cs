@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GanzenbordLib.Vakken
+﻿namespace GanzenbordLib.Vakken
 {
+    /// <summary>
+    /// Doornstruik.
+    /// Terug naar 37.
+    /// <see href="https://nl.wikipedia.org/wiki/Ganzenbord"/>
+    /// </summary>
     public class DoornStruik : Vak
     {
         public override void Actie(Pion p)

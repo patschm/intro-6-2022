@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GanzenbordLib.Vakken
+﻿namespace GanzenbordLib.Vakken
 {
-    public class Opnieuw: Vak
+    /// <summary>
+    /// Dobbelen.
+    /// Speler mag nog een keer dobbelen.
+    /// </summary>
+    public class Dobbelen: Vak
     {
         public override void Actie(Pion p)
         {

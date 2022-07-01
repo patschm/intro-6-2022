@@ -6,14 +6,25 @@ namespace GanzenbordLib
     {
         public string Naam { get; set; }
         public Vak  HuidigVak { get; set; }
+        public int Positie
+        {
+            get 
+            { 
+                if (HuidigVak == null )
+                {
+                    return 0;
+                }
+                return HuidigVak.Positie; 
+            }
+        }
+        public int VorigePositie { get; set; }
         public bool IsWinnaar { get; set; }
-        public bool KanBewegen { get; set; }
+        public bool BeurtOverslaan { get; set; }
 
         public void Verplaats(Vak next)
         {
-            int pos = 0;
-            if (HuidigVak != null) pos = HuidigVak.Positie;
-            Console.WriteLine($"{Naam} komt van positie {pos}.");
+            Console.WriteLine($"{Naam} komt van positie {Positie}.");
+            VorigePositie = Positie;
             HuidigVak = next;    
             next.Actie(this);        
         }

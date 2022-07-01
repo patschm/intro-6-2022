@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GanzenbordLib.Vakken
+﻿namespace GanzenbordLib.Vakken
 {
+    /// <summary>
+    /// Einde.
+    /// Wie hier als eerste komt heeft gewonnen.
+    /// <see href="https://nl.wikipedia.org/wiki/Ganzenbord"/>
+    /// </summary>
     public class Einde : Vak
     {
         public override void Actie(Pion p)
