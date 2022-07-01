@@ -42,7 +42,7 @@ namespace GanzenbordLib
             vakken[31] = new Put { Bord = this, Positie = 31 };
             vakken[42] = new DoornStruik { Bord = this, Positie = 42 };
             vakken[52] = new Gevangenis { Bord = this, Positie = 52 };
-            vakken[58] = new DoornStruik { Bord = this, Positie = 58 };
+            vakken[58] = new Dood { Bord = this, Positie = 58 };
             vakken[63] = new Einde { Bord = this, Positie = 63 };
         }
         public void Beurt()
@@ -106,7 +106,8 @@ namespace GanzenbordLib
             // Teveel gegooid. We moeten het teveel gegooide aantal vakken terug
             if (position >= vakken.Length)
             {
-                position = vakken.Length - (position - vakken.Length -1);
+                int vakkenTeveel = position - 63;
+                position = 63 - vakkenTeveel;
                 return vakken[position];
             }
             return null;           
