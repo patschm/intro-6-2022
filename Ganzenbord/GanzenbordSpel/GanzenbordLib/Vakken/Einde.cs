@@ -10,7 +10,7 @@ namespace GanzenbordLib.Vakken
     {
         public override void Actie(Pion p)
         {
-            Console.WriteLine($"{p.Naam} landt op dood en is de winnaar");
+            Console.WriteLine($"{p.Naam} landt op Einde ({Positie}) en is de winnaar");
             p.IsWinnaar = true;
         }
     }

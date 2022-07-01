@@ -10,7 +10,7 @@ namespace GanzenbordLib.Vakken
     {
         public override void Actie(Pion p)
         {
-            Console.WriteLine($"{p.Naam} landt op doornstruik en moet naar vak 37");
+            Console.WriteLine($"{p.Naam} landt op doornstruik ({Positie}) en moet naar vak 37 ");
             Vak v37 = Bord.FindVak(37);
             p.Verplaats(v37);
         }

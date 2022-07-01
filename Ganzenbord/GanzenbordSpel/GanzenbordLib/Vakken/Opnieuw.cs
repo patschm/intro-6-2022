@@ -10,7 +10,7 @@ namespace GanzenbordLib.Vakken
     {
         public override void Actie(Pion p)
         {
-            Console.WriteLine($"{p.Naam} mag opnieuw gooien");
+            Console.WriteLine($"{p.Naam} mag opnieuw gooien  ({Positie})");
             int worp = Bord.WerpStenen();
             Vak vnext = Bord.FindVak(Positie + worp);
             p.Verplaats(vnext);

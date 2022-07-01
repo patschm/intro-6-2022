@@ -10,7 +10,7 @@ namespace GanzenbordLib.Vakken
     {
         public override void Actie(Pion p)
         {
-            Console.WriteLine($"{p.Naam} landt op dood en moet naar start");
+            Console.WriteLine($"{p.Naam} landt op dood ({Positie}) en moet naar start");
             Vak start = Bord.FindVak(0);
             p.Verplaats(start);
         }

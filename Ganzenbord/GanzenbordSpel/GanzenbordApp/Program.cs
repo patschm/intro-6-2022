@@ -9,6 +9,7 @@ namespace GanzenbordApp
             Bord board = new Bord();
             board.Registreer("Patrick");
             board.Registreer("Peter");
+            Console.WriteLine("=============================================");
             board.Start();
             do
             {

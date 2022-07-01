@@ -102,6 +102,13 @@ namespace GanzenbordLib
             {
                 return vakken[position];
             }
+
+            // Teveel gegooid. We moeten het teveel gegooide aantal vakken terug
+            if (position >= vakken.Length)
+            {
+                position = vakken.Length - (position - vakken.Length -1);
+                return vakken[position];
+            }
             return null;           
         }
         public Bord()
