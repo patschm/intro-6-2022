@@ -7,38 +7,40 @@
     connection.start().then(() => {
         $.get("/home/state?gameId=" + gameid);
     });
-
+    const diceButton = $("#throwDices");
     let gameid = $("#gameId").val();
     let userid = $("#userId").val();
-    let usercolor;
-    const colors = ["aqua", "red", "yellow", "blue", "green", "grey"]; // 6 players at max
-  
+   
     connection.on("changeState", (state) => {
         $.each(state.players, (idx, player) => {
-            if (player.id == userid) usercolor = colors[idx];
-            let current = $("#" + player.id);
-            if (current.length == 0) {
-                current = $("<div>").addClass("token")
+            if (userid == player.id) usercolor = player.color;
+            let pl = $("#" + player.id);
+            if (pl.length == 0) {
+                pl = $("<div>").addClass("token")
                     .attr("id", player.id)
-                    .css("background-color", usercolor)
+                    .css("background-color", player.color)
                     .appendTo($("div#board"));
             }
-            current.css({ "left":positions[player.position].x, "top":positions[player.position].y });
-        });      
+            pl.css({ "left": positions[player.position].x, "top": positions[player.position].y });
+            diceButton.prop("disabled", true);
+        });
+        if (!state.isEnded) {
+            if (state.currentPlayer.id == userid) diceButton.prop("disabled", false);
+        }
     });
 
     connection.on("throw", state => {
         $("#status")
-            .css("background-color", usercolor)
+            .css("background-color", state.color)
             .text(`${state.name} throws: dice1: ${state.dice1}, dice2: ${state.dice2}`);
     });
     connection.on("register", (state) => {
         $("#status")
-            .css("background-color", usercolor)
+            .css("background-color", state.color)
             .text(`${state.name} joined the game`);
     });
 
-    $("#throwDices").click(() => {
+    diceButton.click(() => {
         try {
             $.get("/home/throw?gameId=" + gameid)
         }

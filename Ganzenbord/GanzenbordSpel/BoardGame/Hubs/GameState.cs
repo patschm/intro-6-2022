@@ -6,18 +6,16 @@ namespace BoardGame.Hubs
 {
     public class GameState
     {
-        public List<PlayerState> Players { get; set; } = new List<PlayerState>();
-        public PlayerState Current { get; set; }
-        public int Eyes { get; set; } = 0;
+        public List<PlayerState> Players { get; set; }
+        public PlayerState CurrentPlayer { get; set; }
+        public bool IsEnded { get; private set; }
 
         public static GameState Create(GameModel model)
         {
             GameState state = new GameState { };
-            foreach(var pl in model.Players)
-            {
-                state.Players.Add(new PlayerState { Id = pl.Id, Name = pl.Name, Position=pl.Position });
-            }
-            state.Current = state.Players.FirstOrDefault();
+            state.Players = model.Players.Select(p=>PlayerState.Create(p)).ToList();
+            state.CurrentPlayer = PlayerState.Create(model.ActivePlayer);
+            state.IsEnded = model.IsEnded;
             return state;
         }
         public override string ToString()

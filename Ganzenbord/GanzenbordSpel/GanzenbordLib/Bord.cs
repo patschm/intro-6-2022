@@ -6,10 +6,18 @@ namespace GanzenbordLib
     {
         private List<Pion> pionnen = new List<Pion>();
         private Vak[] vakken = new Vak[64];
-        private Pion ActievePion;
+        public Pion ActievePion { get; set; }
         public bool IsBeeindigd { get; set; }
-        public Dobbelsteen Steen1 = new Dobbelsteen();
-        public Dobbelsteen Steen2 = new Dobbelsteen();
+        public bool IsStarted { get; set; }
+        public Dobbelsteen Steen1 { get; set; } = new Dobbelsteen();
+        public Dobbelsteen Steen2 { get; set; } = new Dobbelsteen();
+        public List<Pion> Spelers
+        {
+            get
+            {
+                return pionnen;
+            }
+        }
 
         private void Initialize()
         {
@@ -89,14 +97,21 @@ namespace GanzenbordLib
         }
         public void Start()
         {
+            IsStarted = true;
             ActievePion = pionnen.First();  
         }
-        public void Registreer(string spelerNaam)
+        public Pion Registreer(string spelerNaam, string kleur="black")
         {
-            Pion p = new Pion();
-            p.Naam = spelerNaam;
+            if (IsStarted) return null;
+            if (pionnen.Exists(p=>p.Naam == spelerNaam))
+            {
+                Console.WriteLine("Speler bestaat al. Geef een andere naam als u deze speler niet bent.");
+                return pionnen.FirstOrDefault(p => p.Naam == spelerNaam);
+            }
+            Pion p = new Pion { Naam = spelerNaam, Kleur=kleur };
             p.Verplaats(FindVak(0));
             pionnen.Add(p);
+            return p;
         }
         internal Vak FindVak(int position)
         {

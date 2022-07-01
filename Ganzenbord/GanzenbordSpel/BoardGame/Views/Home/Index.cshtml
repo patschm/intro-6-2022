@@ -53,13 +53,9 @@
                 }
             </td>
             <td>
-                    @if (!item.IsStarted && !item.IsEnded)
+                    @if (!item.IsEnded && item.Players.Count < 6)
                     {
-                        @Html.ActionLink("Join", "Join", new { gameId=item.Id })
-                    }
-                    else if (item.Players.FirstOrDefault(p=>p.Id == ViewBag.UserId) == null)
-                    {
-                        @Html.ActionLink("Join", "Join", new { gameId=item.Id })
+                        @Html.ActionLink("Join", "Play", new { gameId=item.Id })
                     }
             </td>
         </tr>

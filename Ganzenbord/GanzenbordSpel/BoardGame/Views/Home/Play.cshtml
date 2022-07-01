@@ -22,7 +22,8 @@
 <h1 id="status"></h1>
 <hr/>
 <div id="game">
-    <button id="throwDices" type="button" class="btn btn-primary">Throw Dices</button> 
+    <button id="throwDices" type="button" class="btn btn-primary" 
+        disabled="@(!Model.IsStarted || Model.ActivePlayer.Id != ViewBag.UserId)">Throw Dices</button> 
     <div id="board"></div>
 </div>
 <input type="hidden" id="gameId" value="@Model.Id" />
