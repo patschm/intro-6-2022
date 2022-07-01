@@ -1,0 +1,34 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+div.token {
+    position:absolute;
+    border-radius:100%;
+    width:30px;
+    height:30px;
+}
+
+div#board {
+    width: 1076px;
+    height: 768px;
+    position: relative;
+    background-image: url("../images/board.jpg");
+    
+}

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<BoardGame.Models.GameModel>
+
+@{
+    ViewData["Title"] = "Games";
+}
+
+<h1>Games</h1>
+
+<p>
+    <a asp-action="Create">New Game</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                <label>Players</label>
+            </th>
+            <th>
+                <label>Status</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.HiddenFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Players.Count)
+            </td>
+            <td>
+                @if(item.IsStarted)
+                {
+                    <label>Started</label>        
+                }
+                else if(item.IsEnded)
+                {
+                    <label>Game Over</label>
+                }
+                else
+                {
+                    <span>Open</span>      
+                }
+            </td>
+            <td>
+                    @if (!item.IsStarted && !item.IsEnded)
+                    {
+                        @Html.ActionLink("Join", "Join", new { gameId=item.Id })
+                    }
+                    else if (item.Players.FirstOrDefault(p=>p.Id == ViewBag.UserId) == null)
+                    {
+                        @Html.ActionLink("Join", "Join", new { gameId=item.Id })
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
