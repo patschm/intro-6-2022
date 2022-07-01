@@ -47,8 +47,9 @@ namespace GanzenbordLib
         }
         public void Beurt()
         {
+            Console.WriteLine($"{ActievePion.Naam} is aan de beurt.");
             int nr = WerpStenen();
-          
+            Console.WriteLine($"{ActievePion.Naam} gooit een {stenen[0].Worp} en {stenen[1].Worp}");
             Vak newPos = FindVak(ActievePion.HuidigVak.Positie + nr);
             ActievePion.Verplaats(newPos);
             NextPlayer();
@@ -74,7 +75,7 @@ namespace GanzenbordLib
                 ActievePion = pionnen[currenPionIndex + 1];
             }
         }
-        private int WerpStenen()
+        public int WerpStenen()
         {
             int nr = 0;
             foreach (var steen in stenen)
@@ -82,7 +83,7 @@ namespace GanzenbordLib
                 steen.Gooi();
                 nr = nr + steen.Worp;
             }
-            return] nr;
+            return nr;
         }
         public void Start()
         {
