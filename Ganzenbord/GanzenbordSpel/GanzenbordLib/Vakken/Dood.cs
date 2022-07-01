@@ -8,5 +8,11 @@ namespace GanzenbordLib.Vakken
 {
     public class Dood: Vak
     {
+        public override void Actie(Pion p)
+        {
+            Console.WriteLine($"{p.Naam} landt op dood en moet naar start");
+            Vak start = Bord.FindVak(0);
+            p.Verplaats(start);
+        }
     }
 }

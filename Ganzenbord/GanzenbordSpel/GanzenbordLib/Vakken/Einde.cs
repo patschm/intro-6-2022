@@ -8,5 +8,10 @@ namespace GanzenbordLib.Vakken
 {
     public class Einde : Vak
     {
+        public override void Actie(Pion p)
+        {
+            Console.WriteLine($"{p.Naam} landt op dood en is de winnaar");
+            p.IsWinnaar = true;
+        }
     }
 }

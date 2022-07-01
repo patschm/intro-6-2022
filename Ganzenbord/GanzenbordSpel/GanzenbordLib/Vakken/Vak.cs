@@ -13,9 +13,7 @@ namespace GanzenbordLib.Vakken
 
         public virtual void Actie(Pion p)
         {
-
-        }
-
-     
+            Console.WriteLine($"{p.Naam} landt op {Positie}");
+        }   
     }
 }

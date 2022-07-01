@@ -14,7 +14,7 @@ namespace GanzenbordLib
         public int Gooi()
         {
             Worp = randomizer.Next(1, 7);
-            return Worp
+            return Worp;
         }
     }
 }

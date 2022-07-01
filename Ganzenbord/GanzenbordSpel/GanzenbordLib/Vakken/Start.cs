@@ -8,5 +8,9 @@ namespace GanzenbordLib.Vakken
 {
     public class Start : Vak
     {
+        public override void Actie(Pion p)
+        {
+            Console.WriteLine($"{p.Naam} is aangemeld op start");
+        }
     }
 }

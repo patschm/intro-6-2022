@@ -6,7 +6,7 @@ namespace GanzenbordLib
     {
         private List<Pion> pionnen = new List<Pion>();
         private Vak[] vakken = new Vak[64];
-        private Dobbelsteen[] stenen = new Dobbelsteen[2];
+        internal Dobbelsteen[] stenen = new Dobbelsteen[2];
         private Pion ActievePion;
 
         private void Initialize()
@@ -47,7 +47,7 @@ namespace GanzenbordLib
         }
         public void Beurt()
         {
-            Console.WriteLine($"{ActievePion.Naam} is aan de beurt.");
+            Console.WriteLine($"{ActievePion.Naam} staat op positie {ActievePion.HuidigVak.Positie} is aan de beurt.");
             int nr = WerpStenen();
             Console.WriteLine($"{ActievePion.Naam} gooit een {stenen[0].Worp} en {stenen[1].Worp}");
             Vak newPos = FindVak(ActievePion.HuidigVak.Positie + nr);
@@ -93,6 +93,7 @@ namespace GanzenbordLib
         {
             Pion p = new Pion();
             p.Naam = spelerNaam;
+            p.Verplaats(FindVak(0));
             pionnen.Add(p);
         }
         internal Vak FindVak(int position)

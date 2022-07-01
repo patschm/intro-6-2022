@@ -10,8 +10,9 @@ namespace GanzenbordLib
         public bool KanBewegen { get; set; }
 
         public void Verplaats(Vak next)
-        {
+        { 
             next.Actie(this);
+            HuidigVak = next;       
         }
     }
 }
