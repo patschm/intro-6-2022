@@ -1,4 +1,6 @@
-﻿using GanzenbordLib;
+﻿using BoardGame.Hubs;
+using GanzenbordLib;
+using Microsoft.AspNetCore.SignalR;
 
 namespace BoardGame.Models
 {
@@ -11,7 +13,7 @@ namespace BoardGame.Models
         public string Name { get; set; }
         public string OwnerId { get; private set; }
         public string OwnerName { get; private set; }
-        public bool IsStarted { get => Board.IsStarted; set => Board.Start(); }
+        public bool IsStarted { get => Board.IsStarted; }
         public bool IsEnded { get => Board.IsBeeindigd; }
         public PlayerModel ActivePlayer { get => PlayerModel.Create(Board.ActievePion); }
        
@@ -50,6 +52,11 @@ namespace BoardGame.Models
             var pion = Players.FirstOrDefault();
             OwnerId = pion.Id;
             OwnerName = pion.Name;
+        }
+        public void Start(IHubContext<GameHub> hub)
+        {
+            Console.SetOut(new HubWriter(hub, Id));
+            Board.Start();
         }
     }
 }

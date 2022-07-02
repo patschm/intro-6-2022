@@ -25,7 +25,6 @@ namespace GanzenbordLib
 
         public void Verplaats(Vak next)
         {
-            Console.WriteLine($"{Naam} komt van positie {Positie}.");
             VorigePositie = Positie;
             HuidigVak = next;    
             next.Actie(this);        

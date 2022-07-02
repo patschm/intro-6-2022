@@ -44,7 +44,7 @@ namespace BoardGame.Controllers
         public async Task Start(string gameId)
         {
             var game = _games.FirstOrDefault(g => g.Id == gameId);
-            game.IsStarted = true;
+            game.Start(_hub);
             await _hub.Clients.Group(gameId).SendAsync("changeState", GameState.Create(game));
         }
         public IActionResult Play(string gameId)

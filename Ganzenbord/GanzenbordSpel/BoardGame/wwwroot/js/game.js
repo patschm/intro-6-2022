@@ -9,26 +9,44 @@
     const userid = $("#userId").val();
     const username = $("#userName").val();
     const usercolor = $("#userColor").val();
-
+    const gamestate = $("#gameState");
+   
     await connection.start();
     const connectionId = await connection.invoke("GetConnectionId");
-    
-                
-    connection.on("changeState", (state) => {
-        $.each(state.players, (idx, player) => {
+    const movepawn = ($elem, startPos, endPos) => {
+        let promises = [];
+        for (let idx = startPos; idx <= endPos; idx++) {
+            promises.push($elem.animate({ left: positions[idx].x, top: positions[idx].y }, { duration: "1s", easing: "swing" }).promise());
+            // TODO walk back
+        }
+        return Promise.all(promises);
+    };
+
+    const moveplayers = (players) => {
+        let promises = [];
+        $.each(players, (idx, player) => {
             let pl = $("#" + player.id);
             if (pl.length == 0) {
                 pl = $("<div>").addClass("token")
                     .attr("id", player.id)
+                    .attr("data-position", player.position)
                     .css("background-color", player.color)
+                    .text(player.name)
                     .appendTo($("div#board"));
             }
-            pl.css({ "left": positions[player.position].x, "top": positions[player.position].y });
-            diceButton.prop("disabled", true);
+            let oldPos = pl.attr("data-position");
+            promises.push(movepawn(pl, oldPos, player.position));
+            pl.attr("data-position", player.position);
         });
+        return Promise.all(promises);
+    };  
+    
+    connection.on("changeState", async (state) => {
+        diceButton.prop("disabled", true);
+        await moveplayers(state.players);
         if (!state.isEnded) {
-            if (state.currentPlayer.id == userid) diceButton.prop("disabled", false);
-        }
+            if (state.currentPlayer?.id == userid) diceButton.prop("disabled", false);
+        }  
     });
 
     connection.on("throw", state => {
@@ -45,6 +63,11 @@
         $("#status")
             .css("background-color", state.color)
             .text(`${state.name} has left the game`);
+    });
+    connection.on("gamestate", (state) => {
+
+        $("<h3>").text(state).appendTo(gamestate);
+        gamestate.scrollTop(100000000);
     });
     startButton.click(async () => {
         try {
