@@ -10,6 +10,7 @@ namespace BoardGame.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public string OwnerId { get; private set; }
+        public string OwnerName { get; private set; }
         public bool IsStarted { get => Board.IsStarted; set => Board.Start(); }
         public bool IsEnded { get => Board.IsBeeindigd; }
         public PlayerModel ActivePlayer { get => PlayerModel.Create(Board.ActievePion); }
@@ -27,12 +28,28 @@ namespace BoardGame.Models
         public PlayerModel Register(string name)
         {          
             Pion p = Board.Registreer(name, colors[Players.Count]);
-            if (Players.Count == 1)
+            var pion = Players.FirstOrDefault();
+            if (pion != null)
             {
-                OwnerId = p.Id;
+                OwnerId = pion.Id;
+                OwnerName = pion.Name;
             }
+            
             var player = PlayerModel.Create(p);
             return player;
+        }
+        public void Unregister(string name)
+        {
+            Board.SchijfUit(name);
+            if (Players.Count == 0)
+            {
+                OwnerId = "";
+                OwnerName = "None";
+                return;
+            }
+            var pion = Players.FirstOrDefault();
+            OwnerId = pion.Id;
+            OwnerName = pion.Name;
         }
     }
 }

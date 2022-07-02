@@ -102,16 +102,36 @@ namespace GanzenbordLib
         }
         public Pion Registreer(string spelerNaam, string kleur="black")
         {
-            if (IsStarted) return null;
-            if (pionnen.Exists(p=>p.Naam == spelerNaam))
+            //Pion user = pionnen.FirstOrDefault(p => p.Naam == spelerNaam);
+            Pion user = FindPion(spelerNaam);
+            if (user != null)
             {
                 Console.WriteLine("Speler bestaat al. Geef een andere naam als u deze speler niet bent.");
-                return pionnen.FirstOrDefault(p => p.Naam == spelerNaam);
             }
-            Pion p = new Pion { Naam = spelerNaam, Kleur=kleur };
-            p.Verplaats(FindVak(0));
-            pionnen.Add(p);
-            return p;
+            else if (!IsStarted)
+            {
+                user = new Pion { Naam = spelerNaam, Kleur = kleur };
+                user.Verplaats(FindVak(0));
+                pionnen.Add(user);
+            }
+            return user;
+        }
+        public void SchijfUit(string spelerNaam)
+        {
+            Pion user = FindPion(spelerNaam);
+            if (user != null)
+            {
+                Console.WriteLine($"{user.Naam} kapt ermee. Doei!");
+                pionnen.Remove(user);
+            }
+        }
+        internal Pion FindPion(string name)
+        {
+            foreach(Pion p in pionnen)
+            {
+                if (p.Naam == name) return p;
+            }
+            return null;
         }
         internal Vak FindVak(int position)
         {

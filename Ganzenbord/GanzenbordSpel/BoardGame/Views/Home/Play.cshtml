@@ -5,17 +5,12 @@
 @section Scripts {
     <script src="~/js/game.js"></script>
 }
-<h1>Game On</h1>
+<h1>Hello @ViewBag.UserName. Game On</h1>
 @if(Model.OwnerId == ViewBag.UserId)
 {
     if(!Model.IsStarted && !Model.IsEnded)
     {
-         <form asp-action="Start" method="get">
-                <input type="hidden" name="gameId" value="@Model.Id" />
-                <div class="form-group">
-                    <input type="submit" value="Start Game" class="btn btn-primary" />
-                </div>
-          </form>  
+         <input id="start" type="button" value="Start Game" class="btn btn-primary" />   
     }
 }
 <hr/>
@@ -28,3 +23,5 @@
 </div>
 <input type="hidden" id="gameId" value="@Model.Id" />
 <input type="hidden" id="userId" value="@ViewBag.UserId" />
+<input type="hidden" id="userName" value="@ViewBag.UserName" />
+<input type="hidden" id="userColor" value="@ViewBag.UserColor" />
