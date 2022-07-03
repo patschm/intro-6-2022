@@ -4,20 +4,36 @@
         .withUrl("/game")
         .build();
     const diceButton = $("#throwDices");
-    const startButton = $("#start");
     const gameid = $("#gameId").val();
     const userid = $("#userId").val();
     const username = $("#userName").val();
     const usercolor = $("#userColor").val();
     const gamestate = $("#gameState");
-   
+    let lastthrow = null;
+         
     await connection.start();
     const connectionId = await connection.invoke("GetConnectionId");
-    const movepawn = ($elem, startPos, endPos) => {
+    const moveone = ($elem, left, top) => {
+        return $elem.animate({ left: left-15, top: top-15 }, { duration: "1s", easing: "swing" }).promise()
+    }
+    const movepawn = ($elem, startPos, endPos, absPos) => {
         let promises = [];
-        for (let idx = startPos; idx <= endPos; idx++) {
-            promises.push($elem.animate({ left: positions[idx].x, top: positions[idx].y }, { duration: "1s", easing: "swing" }).promise());
-            // TODO walk back
+        if (absPos >= positions.length) {
+            // Part of the movement is walking back. First move to 63 (positions.length - 1)
+            let idx = startPos;
+            for (; idx < positions.length; idx++) {
+                promises.push(moveone($elem, positions[idx].x, positions[idx].y));
+            }
+            // And now walk back. We're already on 63 so next position is 62
+            for (idx-=2; idx >= endPos; idx--) {
+                promises.push(moveone($elem, positions[idx].x, positions[idx].y));
+            }
+        }
+        else {
+            // Normal behavior
+            for (let idx = startPos; idx <= endPos; idx++) {
+                promises.push(moveone($elem, positions[idx].x, positions[idx].y));
+            }
         }
         return Promise.all(promises);
     };
@@ -25,18 +41,27 @@
     const moveplayers = (players) => {
         let promises = [];
         $.each(players, (idx, player) => {
-            let pl = $("#" + player.id);
-            if (pl.length == 0) {
-                pl = $("<div>").addClass("token")
+            let token = $("#" + player.id);
+            if (token.length == 0) {
+                token = $("<div>").addClass("token")
                     .attr("id", player.id)
                     .attr("data-position", player.position)
                     .css("background-color", player.color)
                     .text(player.name)
                     .appendTo($("div#board"));
             }
-            let oldPos = pl.attr("data-position");
-            promises.push(movepawn(pl, oldPos, player.position));
-            pl.attr("data-position", player.position);
+            let oldPos = token.attr("data-position");
+            if (lastthrow != null && player.id == lastthrow.id) {
+                // Routine need to know when to walk back.
+                // Since player.position is already corrected it is useless.
+                let absolutePos = parseInt(oldPos) + lastthrow.dice1 + lastthrow.dice2;
+                promises.push(movepawn(token, oldPos, player.position, absolutePos));
+            }
+            else {
+                // Wasn't his turn.
+                promises.push(movepawn(token, oldPos, player.position, 0));
+            }
+            token.attr("data-position", player.position);
         });
         return Promise.all(promises);
     };  
@@ -45,11 +70,20 @@
         diceButton.prop("disabled", true);
         await moveplayers(state.players);
         if (!state.isEnded) {
-            if (state.currentPlayer?.id == userid) diceButton.prop("disabled", false);
-        }  
+            if (state.currentPlayer?.id == userid) {
+                diceButton.prop("disabled", false);
+            }
+        }
+        else {
+            $("#status")
+                .css("background-color", lastthrow.color)
+                .text(`Game over: ${lastthrow.name} has won.`);
+        }
+
     });
 
     connection.on("throw", state => {
+        lastthrow = state;
         $("#status")
             .css("background-color", state.color)
             .text(`${state.name} throws: dice1: ${state.dice1}, dice2: ${state.dice2}`);
@@ -65,14 +99,13 @@
             .text(`${state.name} has left the game`);
     });
     connection.on("gamestate", (state) => {
-
         $("<h3>").text(state).appendTo(gamestate);
         gamestate.scrollTop(100000000);
     });
-    startButton.click(async () => {
+    $("#start").click(async () => {
         try {
             await fetch("/home/start?gameId=" + gameid);
-            startButton.hide();
+            $("#start").hide();
         }
         catch (e) {
             console.error(e);

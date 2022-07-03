@@ -75,10 +75,11 @@ namespace BoardGame.Controllers
         public async Task Throw(string gameId)
         {
             var game = _games.FirstOrDefault(g => g.Id == gameId);
-            if (!game.IsStarted || game.IsEnded) return;
+            if (game.IsEnded) return;
             var currentPlayer = game.ActivePlayer;
             game.Board.Beurt();
             await _hub.Clients.Group(gameId).SendAsync("throw", new { 
+                Id = currentPlayer.Id,
                 Name = currentPlayer.Name, 
                 Color = currentPlayer.Color,
                 Dice1 = game.Board.Steen1.Worp, 

@@ -47,6 +47,7 @@ namespace GanzenbordLib
             vakken[31] = new Put { Bord = this, Positie = 31 };
             vakken[42] = new DoornStruik { Bord = this, Positie = 42 };
             vakken[52] = new Gevangenis { Bord = this, Positie = 52 };
+            vakken[53] = new Dobbelen { Bord = this, Positie = 53 };
             vakken[58] = new Dood { Bord = this, Positie = 58 };
             vakken[63] = new Einde { Bord = this, Positie = 63 };
         }
