@@ -17,7 +17,7 @@ namespace BoardGame.Hubs
         public override Encoding Encoding => Encoding.Default;
         public override void WriteLine(string value)
         {
-            _hub.Clients.Group(_gameId).SendAsync("gamestate", value);
+            _hub.Clients.Group(_gameId).SendAsync("message", value);
         }
     }
 }

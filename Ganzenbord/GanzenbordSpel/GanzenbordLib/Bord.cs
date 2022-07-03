@@ -1,4 +1,5 @@
 ﻿using GanzenbordLib.Vakken;
+using System.Diagnostics;
 
 namespace GanzenbordLib
 {
@@ -53,20 +54,36 @@ namespace GanzenbordLib
         }
         public void Beurt()
         {
-            if (ActievePion.BeurtOverslaan)
-            {
-                ActievePion.Verplaats(ActievePion.HuidigVak);
-                NextPlayer();
-                return;
-            }
+            if (!IsStarted) return;
             Console.WriteLine($"{ActievePion.Naam} is aan de beurt.");
             int nr = WerpStenen();
             Console.WriteLine($"{ActievePion.Naam} gooit een {Steen1.Worp} en {Steen2.Worp}");
             Vak newPos = FindVak(ActievePion.Positie + nr);
             ActievePion.Verplaats(newPos);
-            IsBeeindigd = ActievePion.IsWinnaar;
+            if (newPos is Dobbelen)
+            {
+                // Actieve pion blijft dezelfde speler
+                return;
+            }
+            IsStarted = !(IsBeeindigd = ActievePion.IsWinnaar);
+            
             if (IsBeeindigd) return;
-            NextPlayer();
+        }
+        public void Next()
+        {
+            int idx = 0;
+            for (; idx < pionnen.Count; idx++)
+            {
+                NextPlayer();
+                if (ActievePion.KanNietGooien)
+                {
+                    ActievePion.Verplaats(ActievePion.HuidigVak);
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
         private void NextPlayer()
         {
@@ -99,7 +116,7 @@ namespace GanzenbordLib
         public void Start()
         {
             IsStarted = true;
-            ActievePion = pionnen.First();  
+            ActievePion = pionnen.First();
         }
         public Pion Registreer(string spelerNaam, string kleur="black")
         {

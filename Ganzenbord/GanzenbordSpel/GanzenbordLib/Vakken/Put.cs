@@ -12,13 +12,14 @@
 
         public override void Actie(Pion p)
         {
-            if (gevangen != null)
+            if (gevangen != null && gevangen != p)
             {
                 Console.WriteLine($"{gevangen.Naam} is nu vrij.");
-                gevangen.BeurtOverslaan = false;
+                gevangen.KanNietGooien = false;
             }
-            Console.WriteLine($"{p.Naam} landt in de Put ({Positie}) en moet wachten tot emand anders erop komt.");
-            p.BeurtOverslaan = true;
+            if (p.KanNietGooien) return;
+            Console.WriteLine($"{p.Naam} landt in de Put ({Positie}) en moet wachten tot iemand anders erop komt.");
+            p.KanNietGooien = true;
             gevangen = p;
         }
     }

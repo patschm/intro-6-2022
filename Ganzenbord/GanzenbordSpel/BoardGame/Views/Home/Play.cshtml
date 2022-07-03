@@ -2,8 +2,12 @@
 @{
     ViewData["Title"] = "GamePage";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/dice.css" />
+}
 @section Scripts {
-    <script src="~/js/game.js"></script>
+    
+    <script src="~/js/game.js" type="module"></script>
 }
 <h1>Hello @ViewBag.UserName. Game On</h1>
 @if(Model.OwnerId == ViewBag.UserId)
@@ -20,10 +24,29 @@
     <button id="throwDices" type="button" class="btn btn-primary" 
         disabled="@(!Model.IsStarted || Model.ActivePlayer.Id != ViewBag.UserId)">Throw Dices</button> 
     <hr/>
-    <div id="gameState">
-
+    <div id="infoContainer">
+        <div id="dice1" class="dice">
+            <div class="e1"></div>
+            <div class="e2"></div>
+            <div class="e3"></div>
+            <div class="e4"></div>
+            <div class="e5"></div>
+            <div class="e6"></div>
+            <div class="e7"></div>
+        </div>
+        <div id="dice2" class="dice">
+            <div class="e1"></div>
+            <div class="e2"></div>
+            <div class="e3"></div>
+            <div class="e4"></div>
+            <div class="e5"></div>
+            <div class="e6"></div>
+            <div class="e7"></div>
+        </div>
+        <div id="messages">
+        </div>
     </div>
-    <hr/>
+    <hr class="clear"/>
     <div id="board"></div>
     <hr/>
     

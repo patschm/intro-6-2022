@@ -45,6 +45,11 @@ namespace BoardGame.Controllers
         {
             var game = _games.FirstOrDefault(g => g.Id == gameId);
             game.Start(_hub);
+            await _hub.Clients.Group(gameId).SendAsync("started", GameState.Create(game));
+        }
+        public async Task State(string gameId)
+        {
+            var game = _games.FirstOrDefault(g => g.Id == gameId);
             await _hub.Clients.Group(gameId).SendAsync("changeState", GameState.Create(game));
         }
         public IActionResult Play(string gameId)
@@ -67,26 +72,21 @@ namespace BoardGame.Controllers
 
             return RedirectToAction("Index");
         }
-        public async Task State(string gameId)
-        {
-            var game = _games.FirstOrDefault(g => g.Id == gameId);           
-            await _hub.Clients.Group(gameId).SendAsync("changeState", GameState.Create(game));
-         }
         public async Task Throw(string gameId)
         {
             var game = _games.FirstOrDefault(g => g.Id == gameId);
             if (game.IsEnded) return;
-            var currentPlayer = game.ActivePlayer;
             game.Board.Beurt();
             await _hub.Clients.Group(gameId).SendAsync("throw", new { 
-                Id = currentPlayer.Id,
-                Name = currentPlayer.Name, 
-                Color = currentPlayer.Color,
+                Id = game.ActivePlayer.Id,
+                Name = game.ActivePlayer.Name, 
+                Color = game.ActivePlayer.Color,
                 Dice1 = game.Board.Steen1.Worp, 
                 Dice2 = game.Board.Steen2.Worp
             });
-            var stats = GameState.Create(game);
-            await _hub.Clients.Group(gameId).SendAsync("changeState", stats);       
+            await _hub.Clients.Group(gameId).SendAsync("changeState", GameState.Create(game));
+            game.Board.Next();
+            await _hub.Clients.Group(gameId).SendAsync("nextturn", GameState.Create(game));
         }
     }
 }

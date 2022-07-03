@@ -20,7 +20,7 @@ namespace GanzenbordLib
         }
         public int VorigePositie { get; set; }
         public bool IsWinnaar { get; set; }
-        public bool BeurtOverslaan { get; set; }
+        public bool KanNietGooien { get; set; }
         public string Kleur { get; set; }
 
         public void Verplaats(Vak next)

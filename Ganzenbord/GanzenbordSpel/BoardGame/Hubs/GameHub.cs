@@ -10,15 +10,15 @@ namespace BoardGame.Hubs
         {
             return Context.ConnectionId;
         }
-        public async Task JoinGame(string connectionId, string gameId, string name, string color)
+        public async Task JoinGame(string connectionId, string gameId, string id, string name, string color)
         {
             await Groups.AddToGroupAsync(connectionId, gameId);
-            await Clients.Group(gameId).SendAsync("register", new { Name = name, Color = color, GameId = gameId });
+            await Clients.Group(gameId).SendAsync("register", new { Id=id, Name = name, Color = color, GameId = gameId });
         }
-        public async Task LeaveGame(string connectionId, string gameId, string name, string color)
+        public async Task LeaveGame(string connectionId, string gameId, string id, string name, string color)
         {
             await Groups.RemoveFromGroupAsync(connectionId, gameId);
-            await Clients.Group(gameId).SendAsync("unregister", new { Name = name, Color = color, GameId = gameId });
+            await Clients.Group(gameId).SendAsync("unregister", new { Id=id, Name = name, Color = color, GameId = gameId });
         }
     }
 }

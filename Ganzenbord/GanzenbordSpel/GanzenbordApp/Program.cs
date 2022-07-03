@@ -15,7 +15,8 @@ namespace GanzenbordApp
             {
                 board.Beurt();
                 Console.WriteLine("Enter voor next");
-                Console.ReadLine(); 
+                Console.ReadLine();
+                board.Next();
             }
             while (!board.IsBeeindigd);
         }

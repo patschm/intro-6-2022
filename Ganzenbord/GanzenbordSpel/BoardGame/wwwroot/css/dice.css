@@ -1,0 +1,77 @@
+﻿.dice {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    border-radius: 10px;
+}
+
+.e1 {
+    position: absolute;
+    background-color: black;
+    border-radius: 100%;
+    width: 20%;
+    height: 20%;
+    left: 10%;
+    top: 10%;
+}
+
+.e2 {
+    position: absolute;
+    background-color: black;
+    border-radius: 100%;
+    width: 20%;
+    height: 20%;
+    left: 70%;
+    top: 10%;
+}
+
+.e3 {
+    position: absolute;
+    background-color: black;
+    border-radius: 100%;
+    width: 20%;
+    height: 20%;
+    left: 10%;
+    top: 40%;
+}
+
+.e4 {
+    position: absolute;
+    background-color: black;
+    border-radius: 100%;
+    width: 20%;
+    height: 20%;
+    left: 70%;
+    top: 40%;
+}
+
+.e5 {
+    position: absolute;
+    background-color: black;
+    border-radius: 100%;
+    width: 20%;
+    height: 20%;
+    left: 10%;
+    top: 70%;
+}
+
+.e6 {
+    position: absolute;
+    background-color: black;
+    border-radius: 100%;
+    width: 20%;
+    height: 20%;
+    left: 70%;
+    top: 70%;
+}
+
+.e7 {
+    position: absolute;
+    background-color: black;
+    border-radius: 100%;
+    width: 20%;
+    height: 20%;
+    left: 40%;
+    top: 40%;
+}

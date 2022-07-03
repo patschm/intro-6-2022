@@ -21,9 +21,12 @@ div#board {
     width: 1076px;
     height: 768px;
     position: relative;
-    background-image: url("../images/board.jpg");    
+    background-image: url("../images/board.jpg");   
+    margin-top:10px;
 }
-
+hr.clear {
+    clear: both;
+}
 div.token {
     position: absolute;
     border-radius: 100%;
@@ -31,8 +34,30 @@ div.token {
     height: 30px;
 }
 
-div#gameState {
-    width:100%;
+div#messages {
+    display:inline;
+    width:60%;
     height:100px;
     overflow-y:auto;
+    overflow-wrap:break-word;
+    float:left;
+}
+
+#infoContainer {
+    display:inline;
+    width:100%;
+    background-color:red;
+}
+
+#dice1 {
+    float:left;
+    margin:0 10px;
+    width:100px;
+    height:100px;
+}
+#dice2 {
+    float:left;
+    margin: 0 10px;
+    width: 100px;
+    height: 100px;
 }
